@@ -13,10 +13,10 @@ class Curriculum extends Model
         'name',
         'email',
         'phone',
-        'Professional Profile',
-        'Skills',
-        'Work Experience',
-        'Education',
+        'professional_profile',
+        'skills',
+        'work_experience',
+        'education',
     ];
 
 }

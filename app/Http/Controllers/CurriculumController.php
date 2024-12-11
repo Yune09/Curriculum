@@ -30,7 +30,18 @@ class CurriculumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255', // Validación para el email
+            'phone' => 'required|string|max:15', // Ajusta el tamaño según sea necesario
+            'professional_profile' => 'nullable|string', // Campo opcional
+            'skills' => 'nullable|string', // Campo opcional
+            'work_experience' => 'nullable|string', // Campo opcional
+            'education' => 'nullable|string', // Campo opcional
+        ]);
+
+        Curriculum::create($validated);
+        return redirect()->route('curriculums.index')->with('success', 'Curriculum creado correctamente.');//
     }
 
     /**

@@ -21,61 +21,39 @@
     
     
                     <h1 class="text-2xl font-bold mb-6">Ingrese los datos solicitados</h1>
-                    <form method="POST" action="#">
+                    <form action="{{ route('descargar-cv') }}" method="POST">
                         @csrf
-                
-                        <!-- Nombre -->
-                        <div class="mb-4">
-                            <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
-                            <input id="nombre" type="text" name="nombre" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        </div>
-                
-                        <!-- Correo -->
-                        <div class="mb-4">
-                            <label for="correo" class="block text-sm font-medium text-gray-700">Correo</label>
-                            <input id="correo" type="email" name="correo" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        </div>
-                
-                        <!-- Teléfono -->
-                        <div class="mb-4">
-                            <label for="telefono" class="block text-sm font-medium text-gray-700">Teléfono</label>
-                            <input id="telefono" type="tel" name="telefono" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
-                        </div>
-                
-                        <!-- Perfil Profesional -->
-                        <div class="mb-4">
-                            <label for="perfil_profesional" class="block text-sm font-medium text-gray-700">Perfil Profesional</label>
-                            <textarea id="perfil_profesional" name="perfil_profesional" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
-                        </div>
-                
-                        <!-- Habilidades -->
-                        <div class="mb-4">
-                            <label for="habilidades" class="block text-sm font-medium text-gray-700">Habilidades</label>
-                            <textarea id="habilidades" name="habilidades" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
-                        </div>
-                
-                        <!-- Experiencia Laboral -->
-                        <div class="mb-4">
-                            <label for="experiencia_laboral" class="block text-sm font-medium text-gray-700">Experiencia Laboral</label>
-                            <textarea id="experiencia_laboral" name="experiencia_laboral" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
-                        </div>
-                
-                        <!-- Educación -->
-                        <div class="mb-4">
-                            <label for="educacion" class="block text-sm font-medium text-gray-700">Educación</label>
-                            <textarea id="educacion" name="educacion" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
-                        </div>
-                
-                        <!-- Botones -->
-                        <div class="flex justify-between mt-6">
-                            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Crear</button>
-                            <button type="button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Editar</button>
-                            <button type="button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-                            <button type="button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Descargar</button>
-                        </div>
-                    </form>
+                        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2">
+            
+                        <label for="email" class="block text-sm font-medium text-gray-700 mt-4">Email:</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2">
+            
+                        <label for="telefono" class="block text-sm font-medium text-gray-700 mt-4">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2">
+            
+                        <label for="perfil" class="block text-sm font-medium text-gray-700 mt-4">Perfil Profesional:</label>
+                        <textarea id="perfil" name="perfil" rows="4" placeholder="Descripción de perfil profesional" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2"></textarea>
+            
+                        <label for="habilidades" class="block text-sm font-medium text-gray-700 mt-4">Habilidades:</label>
+                        <textarea id="habilidades" name="habilidades[]" rows="4" placeholder="Lista de habilidades (una por línea)" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2"></textarea>
+            
+                        <label for="educacion" class="block text-sm font-medium text-gray-700 mt-4">Educación:</label>
+                        <textarea id="educacion" name="educacion[]" rows="4" placeholder="Lista de educación (una por línea)" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2"></textarea>
+            
+                        <h2 class="mt-6 text-lg font-semibold">Experiencia Laboral</h2>
+                        <textarea name="experiencia[]" rows="4" placeholder="Descripción de experiencia laboral" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 p-2"></textarea>
+            
+                        <button type="submit" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Descargar CV
+                        </button>
+
+
+
                 </div>
-                    {{-- <a href="{{ route('products.create') }}">Agregar Producto</a> --}}
+                <a href="{{ route('curriculums.create') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Agregar Curriculum
+                </a>
                     <table class="table">
                         <thead class="thead-dark"">
                             <tr>
@@ -95,19 +73,13 @@
                                 <td scope="row">{{ $curriculum->name }}</td>
                                 <td scope="row">{{ $curriculum->email }}</td>
                                 <td scope="row">{{ $curriculum->phone }}</td>
-                                <td scope="row">{{ $curriculum->skills }}</td>
                                 <td scope="row">{{ $curriculum->professional_profile }}</td>
+                                <td scope="row">{{ $curriculum->skills }}</td>
                                 <td scope="row">{{ $curriculum->work_experience }}</td>
                                 <td scope="row">{{ $curriculum->education }}</td>
                                 <td scope="row">
                             </tr>
-                                      <a href="{{ route('curriculums.edit', $curriculums) }}">Editar</a>
-                             <form action="{{ route('curriculums.destroy', $curriculums) }}" method="POST" style="display:inline;">
-                                  @csrf
-                                  @method('DELETE')
-                             <button type="button" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-
-                             </form> 
+                           
                                   
                             @endforeach
                         <tbody>

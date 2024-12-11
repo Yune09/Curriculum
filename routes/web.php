@@ -22,7 +22,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+Route::get('/curriculums/create', [CurriculumController::class, 'create'])->name('curriculums.create');
+Route::post('/curriculums/store', [CurriculumController::class, 'store'])->name('curriculums.store');
 
 
-Route::resource('curriculums', CurriculumController::class);
+
+Route::get('/curriculums', [CurriculumController::class, 'index'])->name('curriculums');
+Route::post('/curriculums', [CurriculumController::class, 'index'])->name('curriculums.index');
+
 Route::post('/descargar-cv', [CVController::class, 'descargarCV'])->name('descargar-cv');
