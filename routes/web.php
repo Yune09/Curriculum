@@ -23,11 +23,20 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::get('/curriculums/create', [CurriculumController::class, 'create'])->name('curriculums.create');
+//Route::get('/curriculums/edit', [CurriculumController::class, 'edit'])->name('curriculums.edit');
 Route::post('/curriculums/store', [CurriculumController::class, 'store'])->name('curriculums.store');
+//Route::delete('/curriculums/{id}', [CvController::class, 'destroy'])->name('eliminar-curriculums');
+
+Route::get('curriculums/{id}/edit', [CurriculumController::class, 'edit'])->name('curriculum.edit');
+Route::put('curriculums/{id}', [CurriculumController::class, 'update'])->name('curriculums.update');
+Route::get('curriculums/{id}/delete', [CurriculumController::class, 'showDeleteForm'])->name('curriculum.delete');
+Route::delete('curriculums/{id}', [CurriculumController::class, 'destroy'])->name('curriculums.destroy');
 
 
 
 Route::get('/curriculums', [CurriculumController::class, 'index'])->name('curriculums');
 Route::post('/curriculums', [CurriculumController::class, 'index'])->name('curriculums.index');
+
+
 
 Route::post('/descargar-cv', [CVController::class, 'descargarCV'])->name('descargar-cv');

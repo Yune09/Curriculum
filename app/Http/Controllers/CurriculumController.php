@@ -57,7 +57,13 @@ class CurriculumController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $curriculum = Curriculum::find($id);
+
+        if (!$curriculum) {
+            return redirect()->route('curriculums.index')->with('error', 'Curriculum no encontrado.');
+        }
+
+        return view('curriculums.edit', compact('curriculum'));
     }
 
     /**
@@ -65,15 +71,54 @@ class CurriculumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'skills' => 'nullable|string',
+            'professional_profile' => 'nullable|string',
+            'work_experience' => 'nullable|string',
+            'education' => 'nullable|string',
+        ]);
+
+        $curriculum = Curriculum::find($id);
+
+        if (!$curriculum) {
+            return redirect()->route('curriculums.index')->with('error', 'Curriculum no encontrado.');
+        }
+
+        $curriculum->update($request->all());
+
+        return redirect()->route('curriculums.index')->with('success', 'Curriculum actualizado con éxito.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Curriculum $curriculums )
+    public function destroy( $id )
     {
-        $curriculums ->delete();
-        return redirect()->route('curriculums.index')->with('success', 'Curriculum eliminado correctamente.');
+        $curriculum = Curriculum::find($id);
+
+        if (!$curriculum) {
+            return redirect()->route('curriculums.index')->with('error', 'Curriculum no encontrado.');
+        }
+
+        $curriculum->delete();
+
+        return redirect()->route('curriculums.index')->with('success', 'Curriculum eliminado con éxito.');
     }
+    
+   
+    public function showDeleteForm($id)
+    {
+        $curriculum = Curriculum::find($id);
+
+        if (!$curriculum) {
+            return redirect()->route('curriculums.index')->with('error', 'Curriculum no encontrado.');
+        }
+
+        return view('curriculums.delete', compact('curriculum'));
+    }
+
+    
 }

@@ -47,6 +47,7 @@
                         <button type="submit" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                             Descargar CV
                         </button>
+                        
 
 
 
@@ -54,9 +55,13 @@
                 <a href="{{ route('curriculums.create') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">
                     Agregar Curriculum
                 </a>
+
+            
+
                     <table class="table">
                         <thead class="thead-dark"">
                             <tr>
+                                <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
                                 <th scope="col">Teléfono</th>
@@ -70,6 +75,7 @@
                         <tbody>
                             @foreach ($curriculums as $curriculum)
                             <tr>
+                                <td scope="row">{{ $curriculum->id }}</td>
                                 <td scope="row">{{ $curriculum->name }}</td>
                                 <td scope="row">{{ $curriculum->email }}</td>
                                 <td scope="row">{{ $curriculum->phone }}</td>

@@ -15,8 +15,8 @@ class CVController extends Controller
             'email' => $request->input('email'),
             'telefono' => $request->input('telefono'),
             'perfil' => $request->input('perfil'),
-            'habilidades' => $request->input('habilidades', []), // Asegúrate de que sea un array
-            'educacion' => $request->input('educacion', []), // Asegúrate de que sea un array
+            'habilidades' => $request->input('habilidades', []), 
+            'educacion' => $request->input('educacion', []), 
             'experiencia' => $request->input('experiencia', []),
            
         ];
